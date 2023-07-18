@@ -14,10 +14,7 @@ namespace Escola.API.DTO
         public string Email { get; set; }
         public string DataNascimento { get; set; }
 
-        public AlunoDTO()
-        {
-            
-        }
+        public AlunoDTO() {  }
 
         public AlunoDTO(Aluno aluno )
         {

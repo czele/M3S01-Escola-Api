@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Escola.API.DTO;
+using System;
 using System.Collections.Generic;
 
 namespace Escola.API.Model
@@ -23,7 +24,6 @@ namespace Escola.API.Model
         }
         public Boletim(BoletimDTO boletim)
         {
-
             Id = boletim.Id;
             Data = boletim.Data;
             AlunoId = boletim.AlunoId;

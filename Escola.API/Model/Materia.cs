@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Escola.API.DTO;
+using System.Collections.Generic;
 
 namespace Escola.API.Model
 {
@@ -8,5 +9,17 @@ namespace Escola.API.Model
         public string Nome { get; set; }
 
         public virtual List<NotasMateria> NotasMaterias { get; set; }
+
+        public Materia() { }
+        public Materia(MateriaDTO materiaDTO)
+        {
+            Id = materiaDTO.Id;
+            Nome = materiaDTO.Nome;
+        }
+
+        public void Update(Materia materia)
+        {
+            Nome = materia.Nome;
+        }
     }
 }

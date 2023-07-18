@@ -9,7 +9,6 @@ namespace Escola.API.DTO
         public DateTime Data { get; set; }
         public int AlunoId { get; set; }
 
-
         public BoletimDTO() { }
         public BoletimDTO(Boletim boletim)
         {
