@@ -1,6 +1,5 @@
 ﻿using Escola.API.DTO;
 using System;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Escola.API.Model
 {
@@ -15,11 +14,7 @@ namespace Escola.API.Model
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
 
-        public Aluno()
-        {
-            
-        }
-
+        public Aluno() {  }
 
         public Aluno(AlunoDTO aluno)
         {
