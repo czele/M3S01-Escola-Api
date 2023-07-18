@@ -1,5 +1,6 @@
 ﻿using Escola.API.DTO;
 using System;
+using System.Collections.Generic;
 
 namespace Escola.API.Model
 {
@@ -13,6 +14,7 @@ namespace Escola.API.Model
         public string Telefone { get; set; }
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
+        public List<Boletim> Boletins { get; set; }
 
         public Aluno() {  }
 

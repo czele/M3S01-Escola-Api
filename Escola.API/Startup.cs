@@ -5,17 +5,10 @@ using Escola.API.Interfaces.Services;
 using Escola.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Escola.API
 {
@@ -31,17 +24,22 @@ namespace Escola.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<EscolaDbContexto>();
             services.AddControllers();
 
-            services.AddScoped<IAlunoService,AlunoService>();
+            //Services
+            services.AddScoped<IAlunoService, AlunoService>();
+            //services.AddScoped<IBoletimService, BoletimService>();
+
+            //Repositórios
+            services.AddDbContext<EscolaDbContexto>();
             services.AddScoped<IAlunoRepository, AlunoRepository>();
             services.AddScoped<ITurmaRepository, TurmaRepository>();
+            //services.AddScoped<IBoletimRepository, BoletimRepository>();
 
+           //Cache
             services.AddMemoryCache();
 
-
-
+            //Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Escola.API", Version = "v1" });

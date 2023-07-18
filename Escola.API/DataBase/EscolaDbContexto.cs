@@ -11,30 +11,30 @@ namespace Escola.API.DataBase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Password=P@ssword;Persist Security Info=True;User ID=sa;Initial Catalog=EscolaDB-Audaces;Data Source=tcp:localhost,1433");
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=escolaDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Aluno>().ToTable("AlunoTB");
+            modelBuilder.Entity<Aluno>().ToTable("ALUNO");
 
             modelBuilder.Entity<Aluno>().HasKey(x => x.Id)
-                                        .HasName("Pk_aluno_id");
+                                        .HasName("PK_ALUNO_ID");
 
             modelBuilder.Entity<Aluno>().Property(x => x.Id)
                                         .HasColumnName("PK_ID" )
-                                        .HasColumnType("INT");
+                                        .HasColumnType("int");
 
             modelBuilder.Entity<Aluno>().Property(x => x.Nome)
                                         .IsRequired()
                                         .HasColumnName("NOME")
-                                        .HasColumnType("VARCHAR")
+                                        .HasColumnType("varchar")
                                         .HasMaxLength(50);
 
             modelBuilder.Entity<Aluno>().Property(x => x.Sobrenome)
                                         .IsRequired()
                                         .HasColumnName("SOBRENOME")
-                                        .HasColumnType("VARCHAR")
+                                        .HasColumnType("varchar")
                                         .HasMaxLength(150);
 
             modelBuilder.Entity<Aluno>().Ignore(x => x.Idade);
@@ -42,7 +42,7 @@ namespace Escola.API.DataBase
             modelBuilder.Entity<Aluno>().Property(x => x.Email)
                                         .IsRequired()
                                         .HasColumnName("EMAIL")
-                                        .HasColumnType("VARCHAR")
+                                        .HasColumnType("varchar")
                                         .HasMaxLength(50);
 
 
@@ -51,12 +51,12 @@ namespace Escola.API.DataBase
 
             modelBuilder.Entity<Aluno>().Property(x => x.Genero)
                                         .HasColumnName("GENERO")
-                                        .HasColumnType("VARCHAR")
+                                        .HasColumnType("varchar")
                                         .HasMaxLength(20);
 
             modelBuilder.Entity<Aluno>().Property(x => x.Telefone)
                                         .HasColumnName("TELEFONE")
-                                        .HasColumnType("VARCHAR")
+                                        .HasColumnType("varchar")
                                         .HasMaxLength(30);
 
             modelBuilder.Entity<Aluno>().Property(x => x.DataNascimento)
@@ -74,18 +74,63 @@ namespace Escola.API.DataBase
 
 
             modelBuilder.Entity<Turma>().Property(x => x.Curso)
-                            .HasColumnType("varchar")
-                            .HasMaxLength(50)
-                            .HasDefaultValue("Curso Basico")
-                            .HasColumnName("CURSO");
+                                        .HasColumnType("varchar")
+                                        .HasMaxLength(50)
+                                        .HasDefaultValue("Curso Basico")
+                                        .HasColumnName("CURSO");
 
             modelBuilder.Entity<Turma>().Property(x => x.Nome)
-                            .HasColumnType("varchar")
-                            .HasMaxLength(50)
-                            .HasColumnName("Nome");
+                                        .HasColumnType("varchar")
+                                        .HasMaxLength(50)
+                                        .HasColumnName("NOME");
 
             modelBuilder.Entity<Turma>().HasIndex(x => x.Nome)
                                         .IsUnique();
+
+
+            modelBuilder.Entity<Boletim>().ToTable("BOLETIM");
+
+            modelBuilder.Entity<Boletim>().HasKey(x => x.Id)
+                                          .HasName("PK_BOLETIM_ID");
+
+            modelBuilder.Entity<Boletim>().Property(x => x.Id)
+                                          .HasColumnName("ID")
+                                          .HasColumnType("int");
+
+            modelBuilder.Entity<Boletim>().Property(x => x.Data)
+                                          .HasColumnName("DATA")
+                                          .HasColumnType("datetime2");
+
+            modelBuilder.Entity<Boletim>().HasOne(x => x.Aluno)
+                                          .WithMany(x => x.Boletins)
+                                          .HasForeignKey(x => x.AlunoId);
+
+            modelBuilder.Entity<Boletim>().HasMany(x => x.NotasMaterias)
+                                          .WithOne(x => x.Boletim)
+                                          .HasForeignKey(x => x.MateriaId);
+
+            modelBuilder.Entity<NotasMateria>().ToTable("NOTAS_MATERIA");
+
+            modelBuilder.Entity<NotasMateria>().HasKey(x => x.Id)
+                                               .HasName("PK_NOTASMATERIA_ID");
+
+            modelBuilder.Entity<NotasMateria>().HasOne(x => x.Materia)
+                                               .WithMany(x => x.NotasMaterias)
+                                               .HasForeignKey(x => x.MateriaId);
+
+            modelBuilder.Entity<Materia>().ToTable("MATERIA");
+
+            modelBuilder.Entity<Materia>().HasKey(x => x.Id)
+                                          .HasName("PK_MATERIA_ID");
+
+            modelBuilder.Entity<Materia>().Property(x => x.Id)
+                                          .HasColumnName("ID")
+                                          .HasColumnType("int");
+
+            modelBuilder.Entity<Materia>().Property(x => x.Nome)
+                                          .HasColumnName("NOME")
+                                          .HasColumnType("varchar")
+                                          .HasMaxLength(50);
 
         }
     }

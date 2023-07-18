@@ -28,4 +28,3 @@ namespace Escola.API.Model
         }
     }
 }
-}
