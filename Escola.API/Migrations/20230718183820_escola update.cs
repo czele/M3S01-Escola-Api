@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Escola.API.Migrations
 {
-    public partial class escola : Migration
+    public partial class escolaupdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

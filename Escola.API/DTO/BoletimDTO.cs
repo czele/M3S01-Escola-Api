@@ -12,7 +12,6 @@ namespace Escola.API.DTO
         public BoletimDTO() { }
         public BoletimDTO(Boletim boletim)
         {
-            Id = boletim.Id;
             Data = boletim.Data;
             AlunoId = boletim.AlunoId;
         }
