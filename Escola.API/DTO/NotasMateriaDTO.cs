@@ -12,7 +12,6 @@ namespace Escola.API.DTO
         public NotasMateriaDTO() { }
         public NotasMateriaDTO(NotasMateria notasMateria)
         {
-            Id = notasMateria.Id;
             BoletimId = notasMateria.BoletimId;
             MateriaId = notasMateria.MateriaId;
             Nota = notasMateria.Nota;

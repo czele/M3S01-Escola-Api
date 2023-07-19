@@ -18,7 +18,6 @@ namespace Escola.API.DTO
 
         public AlunoDTO(Aluno aluno )
         {
-            Id = aluno.Id;
             Nome = aluno.Nome;
             Sobrenome = aluno.Sobrenome;
             Idade = aluno.Idade;

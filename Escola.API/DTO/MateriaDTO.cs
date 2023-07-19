@@ -11,7 +11,6 @@ namespace Escola.API.DTO
 
         public MateriaDTO(Materia materia)
         {
-            Id = materia.Id;
             Nome = materia.Nome;
         }
 
