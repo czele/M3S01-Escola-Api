@@ -29,13 +29,14 @@ namespace Escola.API
             //Services
             services.AddScoped<IAlunoService, AlunoService>();
             services.AddScoped<IBoletimService, BoletimService>();
-
+            
             //Repositórios
             services.AddDbContext<EscolaDbContexto>();
             services.AddScoped<IAlunoRepository, AlunoRepository>();
             services.AddScoped<ITurmaRepository, TurmaRepository>();
             services.AddScoped<IBoletimRepository, BoletimRepository>();
-
+            services.AddScoped<IMateriaRepository, MateriaRepository>();
+            
            //Cache
             services.AddMemoryCache();
 
